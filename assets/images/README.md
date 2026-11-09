@@ -1,0 +1,1 @@
+Place optimized, authorized Chapter photographs in this folder. Use descriptive filenames and provide meaningful alt text when adding each image to a page. Do not add official logos unless their use is authorized.

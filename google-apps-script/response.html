@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submission response</title>
+</head>
+<body>
+  <p>This response is for the Chapter website form.</p>
+  <script>
+    const responseMessage = {
+      type: "prc-inquiry-result",
+      success: <?!= successJson ?>,
+      message: <?!= messageJson ?>,
+      requestId: <?!= requestIdJson ?>,
+      inquiryId: <?!= inquiryIdJson ?>
+    };
+    const siteOrigin = <?!= siteOriginJson ?>;
+
+    if (siteOrigin && window.parent !== window) {
+      window.parent.postMessage(responseMessage, siteOrigin);
+    }
+  </script>
+</body>
+</html>

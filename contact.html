@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact the Philippine Red Cross - Baguio City Chapter at 39 Harrison Road, Baguio City, or by email.">
+  <meta name="theme-color" content="#fe0000">
+  <link rel="canonical" href="https://prcbaguio.org/contact.html">
+  <title>Contact Us | Philippine Red Cross - Baguio City Chapter</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header"><div class="site-header__inner">
+    <a class="brand" href="index.html#top" aria-label="Philippine Red Cross - Baguio City Chapter, home"><span class="brand__name">Philippine Red Cross</span><span class="brand__chapter">Baguio City Chapter</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open navigation" hidden><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <nav class="primary-nav" id="primary-menu" aria-label="Primary navigation">
+      <a class="primary-nav__link" href="index.html#top">Home</a><a class="primary-nav__link" href="about.html">About</a>
+      <details class="nav-dropdown"><summary class="primary-nav__link">Services</summary><div class="nav-dropdown__menu"><a href="blood-services.html">Blood Services</a><a href="training.html">Safety Services (Trainings)</a><a href="emergency-services.html">Safety Services (EMS)</a><a href="services.html">All services</a></div></details>
+      <a class="primary-nav__link" href="volunteer.html">Volunteer</a><a class="primary-nav__link" href="news.html">News</a><a class="primary-nav__link" href="donate.html">Donate</a><a class="primary-nav__link" href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </div></header>
+  <main id="main-content">
+    <section class="page-intro"><div class="container page-intro__inner"><p class="eyebrow">Contact us</p><h1>Get in touch with the Chapter.</h1><p class="lead">For non-emergency inquiries, use the official Chapter email or visit the office address below.</p></div></section>
+    <section class="section"><div class="container grid grid--2 content-grid">
+      <div><p class="eyebrow">Chapter office</p><h2>Philippine Red Cross - Baguio City Chapter</h2><address class="contact-address">39 Harrison Road<br>Baguio City</address><p><strong>Email:</strong> <a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a></p><p><strong>Phone:</strong> To be confirmed.</p><a class="button" href="mailto:baguio@redcross.org.ph?subject=Chapter%20inquiry">Send an email</a></div>
+      <div class="map-panel"><p class="eyebrow">Find the office</p><iframe class="map-embed" title="Map showing 39 Harrison Road, Baguio City" src="https://www.google.com/maps?q=39+Harrison+Road,+Baguio+City&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div></section>
+    <section class="section section--muted"><div class="container grid grid--2 content-grid">
+      <article class="inquiry-panel">
+        <p class="eyebrow">General inquiry</p>
+        <h2>Send a message to the Chapter.</h2>
+        <p>Use this form for general questions. For other inquiries, see the dedicated service pages. Do not include sensitive medical, identity, or financial information.</p>
+        <form id="generalInquiryForm" class="site-form" method="POST" target="submissionFrame" accept-charset="UTF-8">
+          <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" name="fullName" maxlength="150" autocomplete="name" required></div>
+          <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" maxlength="254" autocomplete="email" required></div>
+          <div class="form-group"><label for="phone">Mobile Number</label><input type="tel" id="phone" name="phone" maxlength="40" autocomplete="tel"></div>
+          <div class="form-group"><label for="category">Inquiry Category *</label><select id="category" name="category" required><option value="">Select a category</option><option value="General Information">General Information</option><option value="Training Programs">Training Programs</option><option value="Volunteer Opportunities">Volunteer Opportunities</option><option value="Emergency Medical Services">Emergency Medical Services</option><option value="Blood Services">Blood Services</option><option value="Disaster Management Services">Disaster Management Services</option><option value="Partnerships and Donations">Partnerships and Donations</option><option value="Other">Other</option></select></div>
+          <div class="form-group"><label for="subject">Subject *</label><input type="text" id="subject" name="subject" maxlength="200" required></div>
+          <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" rows="5" maxlength="5000" required></textarea><span class="field-hint">Do not include sensitive medical, identity, or financial information.</span></div>
+          <div class="form-honeypot" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="startedAt">
+          <input type="hidden" name="requestId">
+          <div class="form-group"><label class="consent-field"><input type="checkbox" name="privacyConsent" value="yes" required><span>I have read the Privacy Notice and consent to the collection and processing of my information for the purpose of responding to this inquiry.</span></label></div>
+          <p class="privacy-note"><strong>Privacy Notice:</strong> Your inquiry details are sent to the Baguio City Chapter for response and recorded in a Chapter-managed spreadsheet intended for authorized personnel. Do not include sensitive information. For questions about privacy or record retention, email <a href="mailto:baguio@redcross.org.ph">the Chapter</a>.</p>
+          <button class="button" type="submit" id="submitButton" disabled>Submit Inquiry</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true">Online submission is pending setup verification. For now, email <a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a>.</p>
+        </form>
+        <iframe class="form-response-frame" name="submissionFrame" id="submissionFrame" title="Form submission response" aria-hidden="true" tabindex="-1"></iframe>
+      </article>
+      <article><p class="eyebrow">Social media</p><h2>Official channels</h2><p>Chapter social media links will be published after their official accounts are confirmed.</p></article>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="site-footer__inner"><div class="site-footer__top"><div><p class="site-footer__name">Philippine Red Cross - Baguio City Chapter</p><address>39 Harrison Road, Baguio City<br><a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a></address></div><a class="site-footer__national" href="https://redcross.org.ph/" target="_blank" rel="noopener noreferrer">Philippine Red Cross National Headquarters ↗</a></div><p class="site-footer__note">Chapter phone and emergency service details will be published when officially confirmed.</p><a class="back-to-top" href="#main-content">Back to top ↑</a></div></footer>
+</body>
+</html>
