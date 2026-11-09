@@ -29,6 +29,29 @@
       <article class="card training-item"><p class="eyebrow">Safety Services</p><h2>Basic Life Support</h2><p>A responder training area focused on recognizing life-threatening emergencies and providing appropriate basic support.</p><dl><dt>Intended participants</dt><dd>Participants to be confirmed for the specific course offering.</dd><dt>Learning objectives</dt><dd>Course objectives to be confirmed for the current Chapter offering.</dd><dt>Duration and requirements</dt><dd>To be confirmed.</dd></dl><a class="text-link" href="mailto:baguio@redcross.org.ph?subject=Basic%20Life%20Support%20training%20inquiry">Ask about this course →</a></article>
       <article class="card training-item"><p class="eyebrow">Other programs</p><h2>Additional safety training</h2><p>Other emergency response and safety programs may be offered from time to time.</p><dl><dt>Program availability</dt><dd>To be confirmed by the Chapter.</dd><dt>Duration, requirements, and fees</dt><dd>To be confirmed.</dd></dl><a class="text-link" href="mailto:baguio@redcross.org.ph?subject=Safety%20training%20inquiry">Ask about other programs →</a></article>
     </div></div></section>
+    <section class="section section--muted" id="training-registration"><div class="container inquiry-panel">
+      <p class="eyebrow">Training registration</p><h2>Request a training place.</h2>
+      <p>Training dates and availability are not confirmed on this page. Your preferred schedule is a request only; the Chapter will confirm any actual course and place.</p>
+      <form id="training-registration-form" class="site-form" data-prc-form="trainingRegistration" data-response-frame="submissionFrame-training" method="POST" target="submissionFrame-training" accept-charset="UTF-8">
+        <div class="form-group"><label for="training-program">Training Program *</label><select id="training-program" name="trainingProgram" required><option value="">Select a program</option><option>Standard First Aid</option><option>Occupational First Aid</option><option>Basic Life Support</option><option>Other</option></select></div>
+        <div class="form-group"><label for="training-schedule">Preferred Training Schedule *</label><input id="training-schedule" name="trainingSchedule" maxlength="200" placeholder="Preferred dates or general availability" required></div>
+        <div class="form-group"><label for="participant-name">Participant Name *</label><input id="participant-name" name="participantName" maxlength="150" autocomplete="name" required></div>
+        <div class="form-group"><label for="participant-dob">Date of Birth *</label><input id="participant-dob" name="dateOfBirth" type="date" autocomplete="bday" required></div>
+        <div class="form-group"><label for="participant-gender">Gender (optional)</label><input id="participant-gender" name="gender" maxlength="80"></div>
+        <div class="form-group"><label for="training-email">Email Address *</label><input id="training-email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
+        <div class="form-group"><label for="training-phone">Mobile Number *</label><input id="training-phone" name="phone" type="tel" maxlength="40" autocomplete="tel" required></div>
+        <div class="form-group"><label for="training-organization">Organization (optional)</label><input id="training-organization" name="organization" maxlength="200"></div>
+        <div class="form-group"><label for="training-count">Number of Participants *</label><input id="training-count" name="numberOfParticipants" type="number" min="1" max="999999" step="1" required></div>
+        <div class="form-group"><label for="training-requirements">Special Requirements (optional)</label><textarea id="training-requirements" name="specialRequirements" rows="3" maxlength="1000"></textarea><span class="field-hint">Do not include medical history or sensitive health information.</span></div>
+        <div class="form-honeypot" aria-hidden="true"><label for="training-website">Website</label><input id="training-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" name="formType" value="trainingRegistration"><input type="hidden" name="startedAt"><input type="hidden" name="requestId">
+        <div class="form-group"><label class="consent-field"><input type="checkbox" name="privacyConsent" value="yes" required><span>I consent to the Chapter using this information to respond to my training registration request.</span></label></div>
+        <p class="privacy-note">Information is intended for authorized Chapter personnel. A registration request is not a confirmed course booking.</p>
+        <button class="button" type="submit" data-form-submit>Submit training request</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true">Preparing form...</p>
+      </form>
+      <iframe class="form-response-frame" name="submissionFrame-training" title="Training registration response" aria-hidden="true" tabindex="-1"></iframe>
+    </div></section>
   </main>
   <footer class="site-footer"><div class="site-footer__inner"><div class="site-footer__top"><div><p class="site-footer__name">Philippine Red Cross - Baguio City Chapter</p><address>39 Harrison Road, Baguio City<br><a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a></address></div><a class="site-footer__national" href="https://redcross.org.ph/" target="_blank" rel="noopener noreferrer">Philippine Red Cross National Headquarters ↗</a></div><p class="site-footer__note">Chapter phone and emergency service details will be published when officially confirmed.</p><a class="back-to-top" href="#main-content">Back to top ↑</a></div></footer>
 </body>

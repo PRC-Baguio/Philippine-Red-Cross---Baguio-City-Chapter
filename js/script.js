@@ -62,108 +62,110 @@ if (siteHeader && chapterAnnouncement.enabled && announcementMessage) {
 }
 
 const generalInquiryEndpoint = "https://script.google.com/macros/s/AKfycbzVvMeE2yv0fp3TH5j3dHJ0UIdYygDUFWj79ml7a1sw72Z0Gj3ZlPKw-Hnzbj80DkxU/exec";
-const generalInquiryForm = document.querySelector("#generalInquiryForm");
-const generalInquiryFrame = document.querySelector('iframe[name="submissionFrame"]');
-const generalInquiryStatus = document.querySelector("#formStatus");
+const submissionEndpointPattern = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/;
+const submissionEndpointConfigured = submissionEndpointPattern.test(generalInquiryEndpoint);
 
-if (generalInquiryForm && generalInquiryFrame && generalInquiryStatus) {
-	const submitButton = generalInquiryForm.querySelector('button[type="submit"]');
-	const startedAtField = generalInquiryForm.elements.namedItem("startedAt");
-	const requestIdField = generalInquiryForm.elements.namedItem("requestId");
-	const endpointPattern = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/;
-	const isConfigured = endpointPattern.test(generalInquiryEndpoint);
+const createSubmissionRequestId = () => {
+	if (window.crypto && typeof window.crypto.randomUUID === "function") {
+		return window.crypto.randomUUID();
+	}
+	return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
+
+document.querySelectorAll("form[data-prc-form]").forEach((form) => {
+	const formType = form.dataset.prcForm;
+	const responseFrame = document.querySelector(`iframe[name="${form.dataset.responseFrame}"]`);
+	const status = form.querySelector("[data-form-status]");
+	const submitButton = form.querySelector("[data-form-submit]");
+	const requestIdField = form.elements.namedItem("requestId");
+	const startedAtField = form.elements.namedItem("startedAt");
+	if (!responseFrame || !status || !submitButton || !requestIdField || !startedAtField) {
+		return;
+	}
+
+	const defaultButtonLabel = submitButton.textContent.trim();
 	let isSubmitting = false;
 	let responseTimeout = 0;
-
-	const createRequestId = () => {
-		if (window.crypto && typeof window.crypto.randomUUID === "function") {
-			return window.crypto.randomUUID();
-		}
-		return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-	};
-
-	const resetRequestMetadata = () => {
+	const resetSubmissionMetadata = () => {
 		startedAtField.value = String(Date.now());
-		requestIdField.value = createRequestId();
+		requestIdField.value = createSubmissionRequestId();
 	};
-
 	const setStatus = (state, message) => {
-		generalInquiryStatus.dataset.state = state;
-		generalInquiryStatus.textContent = message;
+		status.dataset.state = state;
+		status.textContent = message;
 	};
-
 	const setFormLocked = (locked) => {
-		generalInquiryForm.querySelectorAll("input:not([type=hidden]), select, textarea").forEach((field) => {
+		form.querySelectorAll("input:not([type=hidden]), select, textarea").forEach((field) => {
 			field.disabled = locked;
 		});
-		submitButton.disabled = locked || !isConfigured;
+		submitButton.disabled = locked || !submissionEndpointConfigured;
 	};
 
-	if (isConfigured) {
-		generalInquiryForm.action = generalInquiryEndpoint;
-		resetRequestMetadata();
-		setFormLocked(false);
-		setStatus("ready", "Your inquiry will be sent to the Chapter. A confirmation will appear only if the service returns a verified response.");
-
-		generalInquiryForm.addEventListener("submit", (event) => {
-			event.preventDefault();
-			if (isSubmitting || !generalInquiryForm.reportValidity()) {
-				return;
-			}
-
-			isSubmitting = true;
-			setFormLocked(true);
-			setStatus("pending", "Submitting your inquiry. Please wait for confirmation before leaving this page.");
-			responseTimeout = window.setTimeout(() => {
-				setStatus("pending", "Still waiting for confirmation. Do not resubmit yet; if no confirmation arrives, contact the Chapter before trying again.");
-			}, 30000);
-			HTMLFormElement.prototype.submit.call(generalInquiryForm);
-		});
-
-		window.addEventListener("message", (event) => {
-			const hostname = (() => {
-				try {
-					return new URL(event.origin).hostname;
-				} catch {
-					return "";
-				}
-			})();
-			const trustedOrigin = event.origin.startsWith("https://") && (
-				hostname === "script.google.com" ||
-				hostname === "script.googleusercontent.com" ||
-				hostname.endsWith(".script.googleusercontent.com")
-			);
-
-			if (!isSubmitting || event.source !== generalInquiryFrame.contentWindow || !trustedOrigin) {
-				return;
-			}
-
-			const result = event.data;
-			const isSupportedResponse = result && (
-				result.type === "prc-inquiry-result" ||
-				result.type === "prc-baguio-general-inquiry"
-			);
-			if (!isSupportedResponse || result.requestId !== requestIdField.value) {
-				return;
-			}
-
-			window.clearTimeout(responseTimeout);
-			isSubmitting = false;
-			const succeeded = typeof result.success === "boolean" ? result.success : result.status === "success";
-			if (succeeded) {
-				generalInquiryForm.reset();
-				resetRequestMetadata();
-				setFormLocked(false);
-				setStatus("success", String(result.message || "Your inquiry was received by the Chapter."));
-				return;
-			}
-
-			startedAtField.value = String(Date.now());
-			setFormLocked(false);
-			setStatus("error", String(result.message || "Your inquiry was not received. Please email the Chapter."));
-		});
-	} else {
+	if (!submissionEndpointConfigured) {
 		submitButton.disabled = true;
-		setStatus("pending", "Online submission is pending Google Apps Script setup. For now, email baguio@redcross.org.ph.");
+		setStatus("pending", "Online submission is not configured. Please email baguio@redcross.org.ph.");
+		return;
 	}
-}
+
+	form.action = generalInquiryEndpoint;
+	form.elements.namedItem("formType").value = formType;
+	resetSubmissionMetadata();
+	setFormLocked(false);
+	setStatus("ready", "Your submission will be sent to the Chapter for review.");
+
+	form.addEventListener("submit", (event) => {
+		event.preventDefault();
+		if (isSubmitting || !form.reportValidity()) {
+			return;
+		}
+
+		isSubmitting = true;
+		setFormLocked(true);
+		submitButton.textContent = "Submitting...";
+		setStatus("pending", "Submitting. Please wait for confirmation before leaving this page.");
+		responseTimeout = window.setTimeout(() => {
+			setStatus("pending", "Still waiting for confirmation. Do not resubmit yet; contact the Chapter before trying again.");
+		}, 30000);
+		HTMLFormElement.prototype.submit.call(form);
+	});
+
+	window.addEventListener("message", (event) => {
+		let hostname = "";
+		try {
+			hostname = new URL(event.origin).hostname;
+		} catch {
+			return;
+		}
+
+		const trustedOrigin = event.origin.startsWith("https://") && (
+			hostname === "script.google.com" ||
+			hostname === "script.googleusercontent.com" ||
+			hostname.endsWith(".script.googleusercontent.com")
+		);
+		if (!isSubmitting || event.source !== responseFrame.contentWindow || !trustedOrigin) {
+			return;
+		}
+
+		const result = event.data;
+		if (!result || result.type !== "prc-inquiry-result" || result.requestId !== requestIdField.value || (result.formType && result.formType !== formType)) {
+			return;
+		}
+
+		window.clearTimeout(responseTimeout);
+		isSubmitting = false;
+		submitButton.textContent = defaultButtonLabel;
+		const succeeded = typeof result.success === "boolean" ? result.success : result.status === "success";
+		if (succeeded) {
+			form.reset();
+			form.elements.namedItem("formType").value = formType;
+			resetSubmissionMetadata();
+			setFormLocked(false);
+			setStatus("success", String(result.message || "Your submission was received by the Chapter."));
+			return;
+		}
+
+		startedAtField.value = String(Date.now());
+		setFormLocked(false);
+		setStatus("error", String(result.message || "Your submission was not received. Please contact the Chapter."));
+	});
+});

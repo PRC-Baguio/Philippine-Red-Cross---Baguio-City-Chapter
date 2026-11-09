@@ -52,8 +52,7 @@ No public API or approved integration interface was documented when this page wa
 - The public Blood Services page contains no donor records or internal platform functions. Update donation guidance and activity schedules only after confirmation by the Chapter.
 - To publish a verified news item, copy the article structure in the `news-item-template` element in `news.html` into the news section and replace all sample text and dates.
 - To publish a verified site-wide advisory, edit `chapterAnnouncement` in `js/script.js`, set `enabled` to `true`, and provide the confirmed label and message. Leave it disabled when there is no active advisory.
-- Volunteer inquiries use email links. No Google Form has been connected because the Chapter has not supplied official form URLs.
-- The General Inquiry form on `contact.html` is wired to an Apps Script endpoint, but its live Sheet write has not been verified. Test with a separate spreadsheet before using it for real inquiries. See `google-apps-script/SETUP.md` for deployment, the exact Sheet schema, privacy gate, response contract, and test checklist.
+- Volunteer, Training, Medical Standby, Blood Services, and General Inquiry forms are wired to the Apps Script endpoint. Their live Sheet writes have not been verified. Test all five against a separate workbook before accepting real submissions. See `google-apps-script/SETUP.md` for the exact tab schemas, deployment, privacy gate, response contract, and test checklist.
 - Add official logos or other protected branding only when their use is authorized.
 - Add approved public documents under `assets/documents/`; confirm they contain no private information.
 - Update chapter information only after it has been confirmed by the Chapter.

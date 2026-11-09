@@ -83,6 +83,25 @@
         </aside>
       </div>
     </section>
+    <section class="section section--muted" id="blood-services-inquiry"><div class="container inquiry-panel">
+      <p class="eyebrow">Blood Services inquiry</p><h2>Ask the Chapter about blood services.</h2>
+      <p>Use this public form for general Blood Services questions. Do not include donor records, patient information, medical details, or identity documents.</p>
+      <form id="blood-services-form" class="site-form" data-prc-form="bloodServicesInquiry" data-response-frame="submissionFrame-blood" method="POST" target="submissionFrame-blood" accept-charset="UTF-8">
+        <div class="form-group"><label for="blood-name">Full Name *</label><input id="blood-name" name="fullName" maxlength="150" autocomplete="name" required></div>
+        <div class="form-group"><label for="blood-email">Email Address *</label><input id="blood-email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
+        <div class="form-group"><label for="blood-phone">Mobile Number (optional)</label><input id="blood-phone" name="phone" type="tel" maxlength="40" autocomplete="tel"></div>
+        <div class="form-group"><label for="blood-inquiry-type">Inquiry Type *</label><select id="blood-inquiry-type" name="inquiryType" required><option value="">Select an inquiry type</option><option>Blood donation</option><option>Donor recruitment</option><option>Blood collection activity</option><option>Blood Samaritan information</option><option>Other</option></select></div>
+        <div class="form-group"><label for="blood-message">Message *</label><textarea id="blood-message" name="message" rows="5" maxlength="4000" required></textarea></div>
+        <div class="form-group"><label for="blood-contact-method">Preferred Contact Method *</label><select id="blood-contact-method" name="preferredContactMethod" required><option value="">Select a contact method</option><option>Email</option><option>Phone</option></select><span class="field-hint">A mobile number is required if you select Phone.</span></div>
+        <div class="form-honeypot" aria-hidden="true"><label for="blood-website">Website</label><input id="blood-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" name="formType" value="bloodServicesInquiry"><input type="hidden" name="startedAt"><input type="hidden" name="requestId">
+        <div class="form-group"><label class="consent-field"><input type="checkbox" name="privacyConsent" value="yes" required><span>I consent to the Chapter using this information to respond to my Blood Services inquiry.</span></label></div>
+        <p class="privacy-note">The Chapter must confirm donation eligibility, schedules, collection locations, and Blood Samaritan requirements. This form is not a donor registration or assistance approval.</p>
+        <button class="button" type="submit" data-form-submit>Submit Blood Services inquiry</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true">Preparing form...</p>
+      </form>
+      <iframe class="form-response-frame" name="submissionFrame-blood" title="Blood Services inquiry response" aria-hidden="true" tabindex="-1"></iframe>
+    </div></section>
   </main>
   <footer class="site-footer">
     <div class="site-footer__inner">

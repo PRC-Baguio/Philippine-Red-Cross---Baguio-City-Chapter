@@ -32,7 +32,7 @@
         <p class="eyebrow">General inquiry</p>
         <h2>Send a message to the Chapter.</h2>
         <p>Use this form for general questions. For other inquiries, see the dedicated service pages. Do not include sensitive medical, identity, or financial information.</p>
-        <form id="generalInquiryForm" class="site-form" method="POST" target="submissionFrame" accept-charset="UTF-8">
+        <form id="generalInquiryForm" class="site-form" data-prc-form="generalInquiry" data-response-frame="submissionFrame-general" method="POST" target="submissionFrame-general" accept-charset="UTF-8">
           <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" name="fullName" maxlength="150" autocomplete="name" required></div>
           <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" maxlength="254" autocomplete="email" required></div>
           <div class="form-group"><label for="phone">Mobile Number</label><input type="tel" id="phone" name="phone" maxlength="40" autocomplete="tel"></div>
@@ -40,14 +40,15 @@
           <div class="form-group"><label for="subject">Subject *</label><input type="text" id="subject" name="subject" maxlength="200" required></div>
           <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" rows="5" maxlength="5000" required></textarea><span class="field-hint">Do not include sensitive medical, identity, or financial information.</span></div>
           <div class="form-honeypot" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="formType" value="generalInquiry">
           <input type="hidden" name="startedAt">
           <input type="hidden" name="requestId">
           <div class="form-group"><label class="consent-field"><input type="checkbox" name="privacyConsent" value="yes" required><span>I have read the Privacy Notice and consent to the collection and processing of my information for the purpose of responding to this inquiry.</span></label></div>
           <p class="privacy-note"><strong>Privacy Notice:</strong> Your inquiry details are sent to the Baguio City Chapter for response and recorded in a Chapter-managed spreadsheet intended for authorized personnel. Do not include sensitive information. For questions about privacy or record retention, email <a href="mailto:baguio@redcross.org.ph">the Chapter</a>.</p>
-          <button class="button" type="submit" id="submitButton" disabled>Submit Inquiry</button>
-          <p id="formStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true">Online submission is pending setup verification. For now, email <a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a>.</p>
+          <button class="button" type="submit" id="submitButton" data-form-submit disabled>Submit Inquiry</button>
+          <p id="formStatus" class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true">Online submission is pending setup verification. For now, email <a href="mailto:baguio@redcross.org.ph">baguio@redcross.org.ph</a>.</p>
         </form>
-        <iframe class="form-response-frame" name="submissionFrame" id="submissionFrame" title="Form submission response" aria-hidden="true" tabindex="-1"></iframe>
+        <iframe class="form-response-frame" name="submissionFrame-general" id="submissionFrame-general" title="General Inquiry form response" aria-hidden="true" tabindex="-1"></iframe>
       </article>
       <article><p class="eyebrow">Social media</p><h2>Official channels</h2><p>Chapter social media links will be published after their official accounts are confirmed.</p></article>
     </div></section>
